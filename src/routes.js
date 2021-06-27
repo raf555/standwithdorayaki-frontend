@@ -1,11 +1,14 @@
 import index from './routes/index.svelte';
-import tes from './routes/Tes.svelte';
 import login from './routes/login.svelte';
+import setting from './routes/setting.svelte';
+import notfound from './routes/404.svelte';
+import register from './routes/register.svelte';
 
 export default {
     '/': index,
-    '/tes/': tes,
+    '/register/': register,
     '/login/': login,
-    // The catch-all route must always be last
-    //'*': NotFound
+    '/setting/': setting,
+    
+    '*': notfound
 };

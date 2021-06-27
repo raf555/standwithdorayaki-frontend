@@ -5,43 +5,35 @@
     BreadcrumbItem,
     Grid,
     Row,
-    Column,
-    Select,
-    SelectItem,
-    Button
+    Column
   } from "carbon-components-svelte";
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount, onDestroy } from "svelte";
   import Header from "./../components/Header.svelte";
   import Theme from "./../components/Theme.svelte";
-  import { getloggedinfo, key, verifylogin, logout } from "./../js/auth.js";
+  import { getloggedinfo, verifylogindata, logout } from "./../js/auth.js";
+  import {
+    Card,
+    CardText,
+    CardActions,
+    Button as MButton,
+  } from "svelte-materialify";
   //import { Button } from 'svelte-materialify';
 
   let theme = "g10";
 
   let loginval = getloggedinfo();
-  let loginkey = key;
-
-  const verifylogindata = async () => {
-    let valid = getloggedinfo();
-    if (!valid) {
-      loginval = undefined;
-    } else {
-      let toko = await verifylogin(valid.id);
-      if (!toko) {
-        loginval = undefined;
-      }
-    }
-  }
 
   onMount(async () => {
-    await verifylogindata();
+    loginval = await verifylogindata();
   });
 
-  $: (() => {if (!loginval) location.href = "#/login";})()
+  $: (() => {
+    if (!loginval) location.href = "#/login";
+  })();
 </script>
 
 <svelte:head>
-	<title>Doramonangis - Home</title>
+  <title>Doramonangis - Home</title>
 </svelte:head>
 
 <Theme persist bind:theme>
@@ -49,39 +41,47 @@
   <Content style="background: none; padding: 1rem">
     <Grid>
       <Row>
-        <Column lg="{16}">
+        <Column lg={16}>
           <Breadcrumb noTrailingSlash aria-label="Page navigation">
             <BreadcrumbItem href="#/">Home /</BreadcrumbItem>
           </Breadcrumb>
-          <h1 style="margin-bottom: 1.5rem">Doramonangis Admin</h1>
-        </Column>
-      </Row>
-      <Row>
-        <Column>
-          <Select
-          labelText="Carbon theme"
-          bind:selected="{theme}"
-          style="margin-bottom: 1rem"
-        >
-          <SelectItem value="white" text="White" />
-          <SelectItem value="g10" text="Gray 10" />
-          <SelectItem value="g90" text="Gray 90" />
-          <SelectItem value="g100" text="Gray 100" />
-        </Select>
-        </Column>
-        <Column></Column>
-      </Row>
-      <Row>        
-        <Column>
-          {#if !loginval}
-            Not logged in
-          {:else}
-            Logged in as {loginval.nama}
-            <br/><br/>
-            <Button on:click={() => {logout(); loginval = null}}>Logout</Button>
-          {/if}
         </Column>
       </Row>
     </Grid>
+
+    <div class="d-flex justify-center mt-4 mb-4">
+      <Grid>
+        <Row>
+          <h3 style="margin-bottom: 1.5rem">Doramonangis Admin</h3>
+        </Row>
+      </Grid>
+    </div>
+
+    <div class="d-flex justify-center mt-4 mb-4">
+      <Card shaped hover style="max-width:300px;margin:10px">
+        <img src="//picsum.photos/300" alt="background" />
+        <CardText>
+          <div class="text--primary text-h4">Dorayaki</div>
+          <div class="text--primary">
+            Cek daftar dorayaki yang ada
+          </div>
+        </CardText>
+        <CardActions>
+          <MButton text class="primary-text">Click here</MButton>
+        </CardActions>
+      </Card>
+      <Card shaped hover style="max-width:300px;margin:10px">
+        <img src="//picsum.photos/300" alt="background" />
+        <CardText>
+          <div class="text--primary text-h4">Toko Dorayaki</div>
+          <div class="text--primary">
+            Cek daftar toko dorayaki yang ada
+          </div>
+        </CardText>
+        <CardActions>
+          <MButton text class="primary-text">Click here</MButton>
+        </CardActions>
+      </Card>
+    </div>
   </Content>
 </Theme>

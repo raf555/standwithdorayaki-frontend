@@ -36,6 +36,22 @@ export const login = (data) => {
     }));
 }
 
-export const logout = () => {
+export const logout = (redirect = false) => {
     localStorage.setItem(key, "");
+    if (redirect) {
+        location.href = "#/login";
+    }
+}
+
+export const verifylogindata = async () => {
+    let valid = getloggedinfo();
+    if (!valid) {
+        return null;
+    } else {
+        let toko = await verifylogin(valid.id);
+        if (!toko) {
+            return null;
+        }
+        return toko;
+    }
 }
