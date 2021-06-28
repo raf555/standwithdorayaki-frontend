@@ -20,9 +20,11 @@
     <Content style="background: none; padding: 1rem">
       <Grid>
         <Row>
+          <Column />
           <Column>
             <h1 style="margin-bottom: 1.5rem">not found</h1>
           </Column>
+          <Column />
         </Row>
       </Grid>
     </Content>

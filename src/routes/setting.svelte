@@ -14,6 +14,7 @@
   import { onMount, onDestroy } from "svelte";
   import Header from "./../components/Header.svelte";
   import Theme from "./../components/Theme.svelte";
+  import { Divider } from "svelte-materialify";
   let theme = "g10";
 </script>
 
@@ -34,6 +35,7 @@
         </Column>
       </Row>
     </Grid>
+    <br /><Divider class="grey lighten-2" />
 
     <div class="d-flex justify-center mt-4 mb-4">
       <Grid>

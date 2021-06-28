@@ -17,6 +17,7 @@
     import { getloggedinfo } from "./../js/auth.js";
     import { createToko } from "./../js/tokoapi.js";
     import Login16 from "carbon-icons-svelte/lib/Login16";
+    import { Divider } from "svelte-materialify";
 
     let theme = "g10";
     let loginval = getloggedinfo();
@@ -78,9 +79,7 @@
         invalidkecamatanmsg = "";
         invalidprov = false;
         invalidprovmsg = "";
-        if (out && out.result) {
-            location.href = "/#/login";
-        }
+        location.href = "/#/login";
     };
 
     $: (() => {
@@ -105,6 +104,7 @@
                 </Column>
             </Row>
         </Grid>
+        <br /><Divider class="grey lighten-2" />
 
         <div class="d-flex justify-center mt-4 mb-4">
             <Grid>
@@ -125,7 +125,11 @@
                         bind:value={nama}
                         invalid={invalidnama}
                         invalidText={invalidnamamsg}
-                        on:keydown={()=>{if(invalidnama){invalidnama=false;}}}
+                        on:keydown={() => {
+                            if (invalidnama) {
+                                invalidnama = false;
+                            }
+                        }}
                     />
                 </FormGroup>
                 <FormGroup legendText="Address">
@@ -135,7 +139,11 @@
                         bind:value={jalan}
                         invalid={invalidjalan}
                         invalidText={invalidjalanmsg}
-                        on:keydown={()=>{if(invalidjalan){invalidjalan=false;}}}
+                        on:keydown={() => {
+                            if (invalidjalan) {
+                                invalidjalan = false;
+                            }
+                        }}
                     />
                     <TextInput
                         {disabled}
@@ -143,7 +151,11 @@
                         bind:value={kecamatan}
                         invalid={invalidkecamatan}
                         invalidText={invalidkecamatanmsg}
-                        on:keydown={()=>{if(invalidkecamatan){invalidkecamatan=false;}}}
+                        on:keydown={() => {
+                            if (invalidkecamatan) {
+                                invalidkecamatan = false;
+                            }
+                        }}
                     />
                     <TextInput
                         {disabled}
@@ -151,10 +163,14 @@
                         bind:value={provinsi}
                         invalid={invalidprov}
                         invalidText={invalidprovmsg}
-                        on:keydown={()=>{if(invalidprov){invalidprov=false;}}}
+                        on:keydown={() => {
+                            if (invalidprov) {
+                                invalidprov = false;
+                            }
+                        }}
                     />
                 </FormGroup>
-                <Button {disabled} icon={Login16} type="submit" kind="tertiary">
+                <Button {disabled} icon={Login16} type="submit" style="color: white;">
                     Register
                 </Button>
             </Form>

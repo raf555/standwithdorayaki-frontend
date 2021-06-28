@@ -43,11 +43,11 @@
         <HeaderPanelLink href="/#/dorayaki/">All Dorayaki</HeaderPanelLink>
         <HeaderPanelLink href="/#/dorayaki/new">Add new Dorayaki</HeaderPanelLink>
         <!--<HeaderPanelLink href="#/dorayaki/delete">Delete Dorayaki</HeaderPanelLink>-->
-        <HeaderPanelLink href="/#/dorayaki/transfer">Transfer Dorayaki</HeaderPanelLink>
 
         <HeaderPanelDivider>Dorayaki Store</HeaderPanelDivider>
         <HeaderPanelLink href="/#/store">All Store</HeaderPanelLink>
         <HeaderPanelLink href="/#/store/dorayaki">Add/Remove Dorayaki</HeaderPanelLink>
+        <HeaderPanelLink href="/#/store/transfer">Transfer Dorayaki</HeaderPanelLink>
 
         <HeaderPanelDivider>Other</HeaderPanelDivider>
         <HeaderPanelLink href="/#/setting">Setting</HeaderPanelLink>

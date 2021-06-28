@@ -8,7 +8,7 @@
     Column,
     Select,
     SelectItem,
-    TextInput,
+    Loading,
     Button,
     Form,
     FormGroup,
@@ -19,11 +19,13 @@
   import { istokoexist, key, getloggedinfo, login } from "./../js/auth.js";
   import { getToko } from "./../js/tokoapi.js";
   import Login16 from "carbon-icons-svelte/lib/Login16";
+  import { Divider } from "svelte-materialify";
 
   let theme = "g10";
   let loginkey = key,
     loginval = getloggedinfo(),
     inputid;
+  let loadingbar = false;
   let invalid = false,
     invalidmsg = "",
     disabled = false;
@@ -31,11 +33,13 @@
 
   onMount(async () => {
     disabled = true;
+    loadingbar = true;
     listtoko = await getToko();
-    if (listtoko && listtoko.length>0){
-      inputid = listtoko[0].id
+    if (listtoko && listtoko.length > 0) {
+      inputid = listtoko[0].id;
     }
     disabled = false;
+    loadingbar = false;
   });
 
   const loginform = async () => {
@@ -55,6 +59,7 @@
       disabled = false;
       return;
     }
+    disabled = false;
     invalid = false;
     invalidmsg = "";
     login(out);
@@ -70,6 +75,7 @@
   <title>Doramonangis - Login</title>
 </svelte:head>
 
+<Loading description="loading" active={loadingbar} />
 <Theme persist bind:theme>
   <Header />
   <Content style="background: none; padding: 1rem">
@@ -83,6 +89,7 @@
         </Column>
       </Row>
     </Grid>
+    <br /><Divider class="grey lighten-2" />
 
     <div class="d-flex justify-center mt-4 mb-4">
       <Grid>
@@ -120,7 +127,9 @@
             {/each}
           </Select>
         </FormGroup>
-        <Button {disabled} icon={Login16} type="submit" kind="tertiary">Login</Button>
+        <Button {disabled} icon={Login16} type="submit" style="color: white;"
+          >Login</Button
+        >
       </Form>
     </div>
   </Content>
