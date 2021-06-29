@@ -16,7 +16,7 @@
     import { onMount } from "svelte";
     import Header from "./../components/Header.svelte";
     import Theme from "./../components/Theme.svelte";
-    import { getloggedinfo, verifylogindata } from "./../js/auth.js";
+    import { getloggedinfo, verifylogindata, logout } from "./../js/auth.js";
     import Add20 from "carbon-icons-svelte/lib/Add20";
     import { createDorayaki } from "./../js/dorayakiapi.js";
 
@@ -73,10 +73,11 @@
     });
 
     $: (() => {
-        if (!loginval) location.href = "#/login";
+        if (!loginval) {
+            logout();
+            location.href = "#/login";
+        }
     })();
-
-    $: batch = [].concat(batch_);
 </script>
 
 <svelte:head>

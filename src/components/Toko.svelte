@@ -1,43 +1,42 @@
 <script>
-import {
+    import {
         Card,
         CardText,
         CardActions,
         Button as MButton,
-        Row as MRow,
-        Col as MCol,
         CardTitle,
         CardSubtitle,
     } from "svelte-materialify";
 
-export let nama;
-export let jalan;
-export let kecamatan;
-export let provinsi;
-export let color;
-export let id;
+    export let nama;
+    export let jalan;
+    export let kecamatan;
+    export let provinsi;
+    export let color = "";
+    export let id;
+    export let gambar =
+        "https://lh4.googleusercontent.com/rjZMjgE3b8-JIkJ2q0YfZbRG3gGdlBrxIykPMGwXY1oa3zAE84bJOEis0GyDR7cAIhi1wtquBCdroHb5V0BoBckfLbMk7ipjk9UoiCOCO5X9j0o5rp7pTQ9aRxFhTW40fADBml6v";
+
+    let addr = jalan + " " + kecamatan;
 </script>
 
-
-<div class="rounded pa-4" style="flex-grow:1;max-width:400px;">
-    <Card shaped hover class={color + "theme--dark"}>
-        <MRow>
-            <MCol cols={8}>
-                <CardTitle>{nama}</CardTitle>
-                <CardSubtitle>{provinsi}</CardSubtitle>
-                <CardText>
-                    {jalan}, {kecamatan}
-                </CardText>
-                <CardActions>
-                    <MButton text on:click={()=>location.href="/#/store/"+id}>Visit</MButton>
-                </CardActions>
-            </MCol>
-            <MCol cols={4}>
-                <img
-                    src="//picsum.photos/100?random=1"
-                    alt="cover"
-                />
-            </MCol>
-        </MRow>
-    </Card>
-</div>
+<Card
+    shaped
+    hover
+    style="max-width:200px;margin:10px"
+    class={color + " theme--dark"}
+>
+    <img src={gambar} alt="background" width="200px" height="200px" />
+    <CardTitle>
+        Toko {nama.match(/.{1,10}/)[0] + (nama.length > 10 ? ".." : "")}
+    </CardTitle>
+    <CardSubtitle>{provinsi}</CardSubtitle>
+    <CardText style="height: 50px">
+        {addr.match(/.{1,25}/)[0] + (addr.length > 25 ? ".." : "")}
+    </CardText>
+    <CardActions>
+        <MButton text on:click={() => (location.href = "/#/store/" + id)}>
+            Visit
+        </MButton>
+    </CardActions>
+</Card>

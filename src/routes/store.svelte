@@ -12,9 +12,9 @@
     import { onMount, onDestroy } from "svelte";
     import Header from "./../components/Header.svelte";
     import Theme from "./../components/Theme.svelte";
-    import Dorayaki from "./../components/Dorayaki.svelte";
+    import Toko from "./../components/Toko.svelte";
     import { getloggedinfo, verifylogindata, logout } from "./../js/auth.js";
-    import { getDorayaki } from "./../js/dorayakiapi.js";
+    import { getToko } from "./../js/tokoapi.js";
     import randomcolor from "./../js/randomcolor.js";
 
     let theme = "g10";
@@ -22,15 +22,15 @@
     let batch_ = [];
     let loadingbar = true;
 
-    const loaddorayaki = (dorayaki) => {
+    const loadtoko = (toko) => {
         const count = (i, n) => (i - (i % n)) / n;
 
-        dorayaki = dorayaki.sort((x, y) => x.rasa.toLowerCase() - y.rasa.toLowerCase());
-        for (let i = 0; i < count(dorayaki.length, 4) + 1; i++) {
+        toko = toko.sort((x, y) => x.nama.toLowerCase() - y.nama.toLowerCase());
+        for (let i = 0; i < count(toko.length, 4) + 1; i++) {
             batch_.push([]);
         }
-        for (let i = 0; i < dorayaki.length; i++) {
-            batch_[count(i, 4)].push(dorayaki[i]);
+        for (let i = 0; i < toko.length; i++) {
+            batch_[count(i, 4)].push(toko[i]);
         }
         loadingbar = false;
         batch = [].concat(batch_);
@@ -38,7 +38,7 @@
 
     onMount(async () => {
         loginval = await verifylogindata();
-        loaddorayaki(await getDorayaki());
+        loadtoko(await getToko());
     });
 
     $: (() => {
@@ -52,7 +52,7 @@
 </script>
 
 <svelte:head>
-    <title>Doramonangis - Dorayaki</title>
+    <title>Doramonangis - Store</title>
 </svelte:head>
 
 <Loading description="loading" active={loadingbar} />
@@ -64,7 +64,7 @@
                 <Column lg={16}>
                     <Breadcrumb noTrailingSlash aria-label="Page navigation">
                         <BreadcrumbItem href="/#/">Home</BreadcrumbItem>
-                        <BreadcrumbItem>Dorayaki</BreadcrumbItem>
+                        <BreadcrumbItem>Store</BreadcrumbItem>
                     </Breadcrumb>
                 </Column>
             </Row>
@@ -74,7 +74,7 @@
         <div class="d-flex justify-center mt-4 mb-4">
             <Grid>
                 <Row>
-                    <h3 style="margin-bottom: 1.5rem">Doramonangis Dorayaki</h3>
+                    <h3 style="margin-bottom: 1.5rem">Doramonangis Store</h3>
                 </Row>
             </Grid>
         </div>
@@ -83,18 +83,19 @@
             <Grid>
                 {#each batch as data}
                     <Row>
-                        {#each data as { rasa, deskripsi, gambar, id }}
+                        {#each data as { id, nama, jalan, kecamatan, provinsi }}
                             <Column>
-                                <Dorayaki
-                                    {rasa}
-                                    {deskripsi}
-                                    {gambar}
+                                <Toko
                                     {id}
+                                    {nama}
+                                    {jalan}
+                                    {kecamatan}
+                                    {provinsi}
                                     color={randomcolor()}
                                 />
                             </Column>
                         {/each}
-                    </Row><br />
+                    </Row>
                 {/each}
             </Grid>
         </div>

@@ -28,15 +28,15 @@
         Tab,
         TabContent,
     } from "svelte-materialify";
+    import Dorayaki from "./../components/Dorayaki.svelte";
+    import randomcolor from "./../js/randomcolor.js";
     import { Divider } from "svelte-materialify";
+    import { getDorayakiById } from "./../js/dorayakiapi.js";
     import {
-        getDorayakiById,
-        updateDorayaki,
-        deleteDorayaki,
-    } from "./../js/dorayakiapi.js";
-    import {
-        getTokoJumlahDorayakiById,
-        tokoDorayakiBaru,
+        getTokoDorayaki,
+        getTokoById,
+        updateToko,
+        deleteToko,
     } from "./../js/tokoapi.js";
 
     let theme = "g10";
@@ -46,86 +46,136 @@
     let adddisabled = false;
     let disabled = false;
 
-    let rasa = "",
-        id = "",
-        deskripsi = "",
-        gambar = "",
+    let gambar =
+        "https://lh4.googleusercontent.com/rjZMjgE3b8-JIkJ2q0YfZbRG3gGdlBrxIykPMGwXY1oa3zAE84bJOEis0GyDR7cAIhi1wtquBCdroHb5V0BoBckfLbMk7ipjk9UoiCOCO5X9j0o5rp7pTQ9aRxFhTW40fADBml6v";
+
+    let id = "",
+        nama = "",
+        jalan = "",
+        kecamatan = "",
+        provinsi = "",
         lastupdate = "";
 
-    let inputrasa, inputdeskripsi, inputgambar;
+    let inputnama, inputjalan, inputkecamatan, inputprovinsi;
 
-    const addToStore = async () => {
-        adddisabled = true;
-        let data = await tokoDorayakiBaru(loginval.id, params.id);
-        disabled = false;
-        have = 1;
-    };
-
-    const deletedorayaki = async () => {
-        disabled = true;
-        await deleteDorayaki(params.id);
-
-        disabled = false;
-        location.href = "/#/dorayaki";
-    };
-
-    const updatedorayaki = async () => {
-        if (!inputrasa) {
-            inputrasa = rasa;
+    const updatetoko = async () => {
+        if (!inputnama) {
+            inputnama = nama;
         }
-        if (!inputdeskripsi) {
-            inputdeskripsi = deskripsi;
+        if (!inputjalan) {
+            inputjalan = jalan;
         }
-        if (!inputgambar) {
-            inputgambar = gambar;
+        if (!inputkecamatan) {
+            inputkecamatan = kecamatan;
+        }
+        if (!inputprovinsi) {
+            inputprovinsi = provinsi;
         }
 
         disabled = true;
 
-        await updateDorayaki(params.id, {
-            rasa: inputrasa,
-            gambar: inputgambar,
-            deskripsi: inputdeskripsi,
+        await updateToko(params.id, {
+            nama: inputnama,
+            jalan: inputjalan,
+            kecamatan: inputkecamatan,
+            provinsi: inputprovinsi,
         });
 
         disabled = false;
 
-        rasa = inputrasa;
-        deskripsi = inputdeskripsi;
-        gambar = inputgambar;
+        nama = inputnama;
+        jalan = inputjalan;
+        kecamatan = inputkecamatan;
+        provinsi = inputprovinsi;
     };
 
-    const loaddorayaki = async () => {
+    const deletetoko = async () => {
+        disabled = true;
+        await deleteToko(params.id);
+
+        disabled = false;
+
+        if (params.id === loginval.id) {
+            logout(true);
+        } else {
+            location.href = "/#/store";
+        }
+    };
+
+    const loadtoko = async () => {
         loadingbar = true;
-        let data = await getDorayakiById(params.id);
-        if (!data) {
+        let data = await getTokoById(params.id);
+
+        if (data.length === 0) {
             loadingbar = false;
             location.href = "/#/notfound";
             return;
         }
 
-        let req = await getTokoJumlahDorayakiById(loginval.id, params.id);
-        if (req) {
-            have = req.jumlah;
-        } else {
-            have = 0;
-        }
+        await loaddorayaki();
 
         loadingbar = false;
-        rasa = data[0].rasa;
-        id = data[0].id;
-        deskripsi = data[0].deskripsi;
-        lastupdate = data[0].updatedAt;
-        gambar = data[0].gambar;
 
-        inputrasa = rasa;
-        inputdeskripsi = deskripsi;
-        inputgambar = gambar;
+        id = data[0].id;
+        nama = data[0].nama;
+        jalan = data[0].jalan;
+        kecamatan = data[0].kecamatan;
+        provinsi = data[0].provinsi;
+        lastupdate = data[0].updatedAt;
+
+        inputnama = nama;
+        inputjalan = jalan;
+        inputkecamatan = kecamatan;
+        inputprovinsi = provinsi;
+    };
+
+    let batch_ = [];
+
+    const getdorayaki = async () => {
+        let have = await getTokoDorayaki(params.id);
+
+        let out = [];
+        let promises = [];
+
+        for (let i = 0; i < have.length; i++) {
+            promises.push(getDorayakiById(have[i].iddorayaki));
+        }
+
+        let promised = await Promise.all(promises);
+
+        promised.forEach((data) => {
+            let cur = data[0];
+            let jumlah = have.filter((d) => d.iddorayaki === cur.id)[0].jumlah;
+            out.push(
+                Object.assign(cur, {
+                    jumlah: jumlah,
+                })
+            );
+        });
+
+        return out
+            .filter((d) => d.jumlah > 0)
+            .sort((x, y) => -1 * (x.jumlah - y.jumlah));
+    };
+
+    const loaddorayaki = async () => {
+        loadingbar = true;
+        let dorayaki = await getdorayaki();
+        const count = (i, n) => (i - (i % n)) / n;
+        batch_ = [];
+        for (let i = 0; i < count(dorayaki.length, 4) + 1; i++) {
+            batch_.push([]);
+        }
+        for (let i = 0; i < dorayaki.length; i++) {
+            batch_[count(i, 4)].push(dorayaki[i]);
+        }
+        loadingbar = false;
+        batch = [].concat(batch_);
     };
 
     onMount(async () => {
         loginval = await verifylogindata();
-        //await loaddorayaki();
+        //await loadtoko();
     });
 
     $: (() => {
@@ -135,12 +185,12 @@
         }
     })();
 
-    $: have = 0;
-    $: loaddorayaki(params.id);
+    $: loadtoko(params.id);
+    $: batch = [].concat(batch_);
 </script>
 
 <svelte:head>
-    <title>Doramonangis - Home</title>
+    <title>Doramonangis - Store</title>
 </svelte:head>
 
 <Loading description="loading" active={loadingbar} />
@@ -152,9 +202,7 @@
                 <Column lg={16}>
                     <Breadcrumb noTrailingSlash aria-label="Page navigation">
                         <BreadcrumbItem href="/#/">Home</BreadcrumbItem>
-                        <BreadcrumbItem href="/#/dorayaki"
-                            >Dorayaki</BreadcrumbItem
-                        >
+                        <BreadcrumbItem href="/#/store">Store</BreadcrumbItem>
                         <BreadcrumbItem>{params.id}</BreadcrumbItem>
                     </Breadcrumb>
                 </Column>
@@ -170,7 +218,7 @@
                         style="height: 300px; margin: 10px;"
                     >
                         <img
-                            alt="Gambar dorayaki"
+                            alt="Gambar Toko"
                             style="max-width: 100%; max-height: 100%; display: block; margin: auto"
                             src={gambar}
                         />
@@ -199,59 +247,57 @@
                             <br />
                             <TabContent>
                                 <div style="margin:10px">
-                                    <h4>Dorayaki - Rasa {rasa}</h4>
+                                    <h4>Toko {nama}</h4>
                                     <p>
-                                        {deskripsi}
+                                        {jalan}
+                                        {kecamatan}
+                                        {provinsi}
                                     </p>
-                                    <br />
-                                    {#if have === 0}
-                                        <Button
-                                            disabled={adddisabled}
-                                            type="submit"
-                                            on:click={addToStore}
-                                            style="color: white;"
-                                            icon={Add20}
-                                        >
-                                            Add to Your Store
-                                        </Button>
-                                    {:else}
-                                        <p>You have {have} this Dorayaki.</p>
-                                    {/if}
                                 </div>
                             </TabContent>
                             <TabContent>
                                 <div style="margin:10px">
                                     <h4>Update Info</h4>
                                     <div>
-                                        <Form on:submit={updatedorayaki}>
+                                        <Form on:submit={updatetoko}>
                                             <MRow>
                                                 <MCol>
                                                     <FormGroup
-                                                        legendText="Rasa"
+                                                        legendText="Nama"
                                                     >
                                                         <TextInput
                                                             {disabled}
-                                                            bind:value={inputrasa}
+                                                            bind:value={inputnama}
                                                         />
                                                     </FormGroup>
                                                 </MCol>
                                                 <MCol>
                                                     <FormGroup
-                                                        legendText="Deskripsi"
+                                                        legendText="Jalan"
                                                     >
                                                         <TextInput
                                                             {disabled}
-                                                            bind:value={inputdeskripsi}
+                                                            bind:value={inputjalan}
                                                         />
                                                     </FormGroup>
                                                 </MCol>
                                                 <MCol>
                                                     <FormGroup
-                                                        legendText="Gambar (URL)"
+                                                        legendText="Kecamatan"
                                                     >
                                                         <TextInput
                                                             {disabled}
-                                                            bind:value={inputgambar}
+                                                            bind:value={inputkecamatan}
+                                                        />
+                                                    </FormGroup>
+                                                </MCol>
+                                                <MCol>
+                                                    <FormGroup
+                                                        legendText="Provinsi"
+                                                    >
+                                                        <TextInput
+                                                            {disabled}
+                                                            bind:value={inputprovinsi}
                                                         />
                                                     </FormGroup>
                                                 </MCol>
@@ -267,7 +313,7 @@
 
                                             <Button
                                                 {disabled}
-                                                on:click={deletedorayaki}
+                                                on:click={deletetoko}
                                                 kind="danger"
                                                 style="color: white;"
                                                 icon={Delete20}
@@ -282,6 +328,42 @@
                     </div>
                 </MCol>
             </MRow>
+        </div>
+
+        <br /><Divider class="grey lighten-2" />
+        <br />
+
+        <div class="d-flex justify-center mt-4 mb-4">
+            <Grid>
+                <Row>
+                    <h4 style="margin-bottom: 1.5rem">Dorayaki List</h4>
+                </Row>
+            </Grid>
+        </div>
+
+        <div class="d-flex justify-center mt-4 mb-4" style="margin: 25px">
+            <Grid>
+                {#each batch as data}
+                    <Row>
+                        {#each data as { rasa, deskripsi, gambar, id, jumlah }}
+                            <Column>
+                                <Dorayaki
+                                    {rasa}
+                                    {deskripsi}
+                                    {gambar}
+                                    {id}
+                                    color={randomcolor()}
+                                    isinstore={true}
+                                    idtoko={params.id}
+                                    {jumlah}
+                                    on:update={loaddorayaki}
+                                    authorized={params.id==loginval.id}
+                                />
+                            </Column>
+                        {/each}
+                    </Row><br />
+                {/each}
+            </Grid>
         </div>
     </Content>
 </Theme>

@@ -29,7 +29,7 @@ export const tokoDorayakiBaru = async (idtoko, iddorayaki) => {
             iddorayaki: iddorayaki
         }
         let data = await API.post("/"+idtoko+"/item", payload);
-        return data.message;
+        return data.data;
     } catch (e) {
         console.error(e);
     }
@@ -41,7 +41,7 @@ export const updateTokoDorayaki = async (idtoko, iddorayaki, jumlah) => {
             jumlah: jumlah
         }
         let data = await API.put("/"+idtoko+"/item/"+iddorayaki, payload);
-        return data.message;
+        return data.data;
     } catch (e) {
         console.error(e);
     }
@@ -50,7 +50,7 @@ export const updateTokoDorayaki = async (idtoko, iddorayaki, jumlah) => {
 export const deleteTokoDorayaki = async (idtoko, iddorayaki) => {
     try {
         let data = await API.delete("/"+idtoko+"/item/"+iddorayaki);
-        return data.message;
+        return data.data;
     } catch (e) {
         console.error(e);
     }
@@ -78,7 +78,7 @@ export const getTokoById = async (id) => {
 export const createToko = async (payload) => {
     try {
         let data = await API.post("/", payload);
-        return data.message;
+        return data.data;
     } catch (e) {
         console.error(e);
     }
@@ -87,7 +87,7 @@ export const createToko = async (payload) => {
 export const updateToko = async (id, payload) => {
     try {
         let data = await API.put("/"+id, payload);
-        return data.message;
+        return data.data;
     } catch (e) {
         console.error(e);
     }
@@ -96,7 +96,7 @@ export const updateToko = async (id, payload) => {
 export const deleteToko = async (id) => {
     try {
         let data = await API.delete("/"+id);
-        return data.message;
+        return data.data;
     } catch (e) {
         console.error(e);
     }

@@ -28,8 +28,12 @@
   });
 
   $: (() => {
-    if (!loginval) location.href = "#/login";
-  })();
+        if (!loginval) {
+            logout();
+            location.href = "#/login";
+        }
+    })();
+    
 </script>
 
 <svelte:head>

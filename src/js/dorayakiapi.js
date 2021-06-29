@@ -25,7 +25,7 @@ export const getDorayakiById = async (id) => {
 export const createDorayaki = async (payload) => {
     try {
         let data = await API.post("/", payload);
-        return data.message;
+        return data.data;
     } catch (e) {
         console.error(e);
     }
@@ -34,7 +34,7 @@ export const createDorayaki = async (payload) => {
 export const updateDorayaki = async (id, payload) => {
     try {
         let data = await API.put("/"+id, payload);
-        return data.message;
+        return data.data;
     } catch (e) {
         console.error(e);
     }
@@ -43,7 +43,7 @@ export const updateDorayaki = async (id, payload) => {
 export const deleteDorayaki = async (id) => {
     try {
         let data = await API.delete("/"+id);
-        return data.message;
+        return data.data;
     } catch (e) {
         console.error(e);
     }
