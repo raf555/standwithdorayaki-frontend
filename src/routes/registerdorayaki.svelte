@@ -19,6 +19,7 @@
     import { getloggedinfo, verifylogindata, logout } from "./../js/auth.js";
     import Add20 from "carbon-icons-svelte/lib/Add20";
     import { createDorayaki } from "./../js/dorayakiapi.js";
+    import Dorayaki from "./../components/Dorayaki.svelte";
 
     let theme = "g10";
     let loginval = getloggedinfo();
@@ -54,7 +55,7 @@
         let out = await createDorayaki({
             rasa: rasa,
             gambar: gambar,
-            deskripsi: deskripsi
+            deskripsi: deskripsi,
         });
 
         disabled = false;
@@ -64,9 +65,9 @@
         invaliddeskripsimsg = "";
         invalidgambar = false;
         invalidgambarmsg = "";
-        
-        location.href = "/#/dorayaki";
-    }
+
+        location.href = "#/dorayaki";
+    };
 
     onMount(async () => {
         loginval = await verifylogindata();
@@ -91,8 +92,8 @@
             <Row>
                 <Column lg={16}>
                     <Breadcrumb noTrailingSlash aria-label="Page navigation">
-                        <BreadcrumbItem href="/#/">Home</BreadcrumbItem>
-                        <BreadcrumbItem href="/#/dorayaki"
+                        <BreadcrumbItem href="#/">Home</BreadcrumbItem>
+                        <BreadcrumbItem href="#/dorayaki"
                             >Dorayaki</BreadcrumbItem
                         >
                         <BreadcrumbItem>New</BreadcrumbItem>
@@ -113,58 +114,67 @@
         </div>
 
         <div class="d-flex justify-center mt-4 mb-4">
-            <Form on:submit={newdorayaki}>
-                <FormGroup legendText="Rasa">
-                    <TextInput
-                        {disabled}
-                        placeholder="Masukkan rasa"
-                        bind:value={rasa}
-                        invalid={invalidrasa}
-                        invalidText={invalidrasamsg}
-                        on:keydown={() => {
-                            if (invalidrasa) {
-                                invalidrasa = false;
-                            }
-                        }}
-                    />
-                </FormGroup>
-                <FormGroup legendText="Deskripsi">
-                    <TextInput
-                        {disabled}
-                        placeholder="Masukkan deskripsi"
-                        bind:value={deskripsi}
-                        invalid={invaliddeskripsi}
-                        invalidText={invaliddeskripsimsg}
-                        on:keydown={() => {
-                            if (invaliddeskripsi) {
-                                invaliddeskripsi = false;
-                            }
-                        }}
-                    />
-                </FormGroup>
-                <FormGroup legendText="Gambar (URL)">
-                    <TextInput
-                        {disabled}
-                        placeholder="Masukkan URL gambar"
-                        bind:value={gambar}
-                        invalid={invalidgambar}
-                        invalidText={invalidgambarmsg}
-                        on:keydown={() => {
-                            if (invalidgambar) {
-                                invalidgambar = false;
-                            }
-                        }}
-                    />
-                </FormGroup>
-                <Button
-                    {disabled}
-                    icon={Add20}
-                    type="submit"
-                    style="color: white;"
-                >
-                    Register
-                </Button>
-            </Form>
+            <Grid>
+                <Row>
+                    <Column>
+                        <Form on:submit={newdorayaki}>
+                            <FormGroup legendText="Rasa">
+                                <TextInput
+                                    {disabled}
+                                    placeholder="Masukkan rasa"
+                                    bind:value={rasa}
+                                    invalid={invalidrasa}
+                                    invalidText={invalidrasamsg}
+                                    on:keydown={() => {
+                                        if (invalidrasa) {
+                                            invalidrasa = false;
+                                        }
+                                    }}
+                                />
+                            </FormGroup>
+                            <FormGroup legendText="Deskripsi">
+                                <TextInput
+                                    {disabled}
+                                    placeholder="Masukkan deskripsi"
+                                    bind:value={deskripsi}
+                                    invalid={invaliddeskripsi}
+                                    invalidText={invaliddeskripsimsg}
+                                    on:keydown={() => {
+                                        if (invaliddeskripsi) {
+                                            invaliddeskripsi = false;
+                                        }
+                                    }}
+                                />
+                            </FormGroup>
+                            <FormGroup legendText="Gambar (URL)">
+                                <TextInput
+                                    {disabled}
+                                    placeholder="Masukkan URL gambar"
+                                    bind:value={gambar}
+                                    invalid={invalidgambar}
+                                    invalidText={invalidgambarmsg}
+                                    on:keydown={() => {
+                                        if (invalidgambar) {
+                                            invalidgambar = false;
+                                        }
+                                    }}
+                                />
+                            </FormGroup>
+                            <Button
+                                {disabled}
+                                icon={Add20}
+                                type="submit"
+                                style="color: white;"
+                            >
+                                Register
+                            </Button>
+                        </Form>
+                    </Column>
+                    <Column>
+                        <Dorayaki {...{ rasa, deskripsi, gambar }} />
+                    </Column>
+                </Row>
+            </Grid>
         </div>
     </Content>
 </Theme>

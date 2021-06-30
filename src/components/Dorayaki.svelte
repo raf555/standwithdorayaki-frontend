@@ -17,9 +17,9 @@
     import GlyphCautionInvertedGlyph from "carbon-icons-svelte/lib/GlyphCautionInvertedGlyph";
     import { updateTokoDorayaki } from "./../js/tokoapi.js";
 
-    export let rasa;
-    export let gambar;
-    export let deskripsi;
+    export let rasa = "Hambar";
+    export let gambar = "https://blog.tokowahab.com/wp-content/uploads/2019/11/Resep-Kue-Dorayaki-Isi-Cokelat.jpg";
+    export let deskripsi = "Dorayaki rasa hambar hoek";
     export let color;
     export let id;
     export let lidactive = false;
@@ -86,14 +86,14 @@
                     size="small"
                     class="ml-auto"
                     kind="ghost"
-                    on:click={() => (location.href = "/#/store/transfer/" + id)}
+                    on:click={() => (location.href = "#/store/transfer/" + id)}
                     >Trf</Button
                 >
             {/if}
         {:else}
             <MButton
                 text
-                on:click={() => (location.href = "/#/dorayaki/" + id)}
+                on:click={() => (location.href = "#/dorayaki/" + id)}
             >
                 Visit
             </MButton>
@@ -120,7 +120,12 @@
                 >
                 <br />
                 <br />
-                <MButton text class="primary-color" {disabled}>Transfer</MButton
+                <MButton
+                    text
+                    class="primary-color"
+                    {disabled}
+                    on:click={() => (location.href = "#/store/transfer/" + id)}
+                    >Transfer</MButton
                 >
             </div>
         </div>

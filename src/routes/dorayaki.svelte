@@ -7,6 +7,7 @@
         Row,
         Column,
         Loading,
+        Search,
     } from "carbon-components-svelte";
     import { Divider } from "svelte-materialify";
     import { onMount, onDestroy } from "svelte";
@@ -21,24 +22,44 @@
     let loginval = getloggedinfo();
     let batch_ = [];
     let loadingbar = true;
+    let dorayaki = [];
+    let searchval = "";
+
+    const search = (searchval) => {
+        let val = searchval;
+        if (!val) {
+            loaddorayaki(dorayaki);
+            return;
+        }
+        loaddorayaki(
+            dorayaki.filter((d) => {
+                return d.rasa
+                    .toLowerCase()
+                    .match(new RegExp(val.toLowerCase()));
+            })
+        );
+    };
 
     const loaddorayaki = (dorayaki) => {
         const count = (i, n) => (i - (i % n)) / n;
 
-        dorayaki = dorayaki.sort((x, y) => x.rasa.toLowerCase() - y.rasa.toLowerCase());
+        batch_ = [];
+        dorayaki = dorayaki.sort((x, y) => x.rasa.localeCompare(y.rasa));
+        console.log("a".localeCompare());
         for (let i = 0; i < count(dorayaki.length, 4) + 1; i++) {
             batch_.push([]);
         }
         for (let i = 0; i < dorayaki.length; i++) {
             batch_[count(i, 4)].push(dorayaki[i]);
         }
-        loadingbar = false;
         batch = [].concat(batch_);
     };
 
     onMount(async () => {
         loginval = await verifylogindata();
-        loaddorayaki(await getDorayaki());
+        dorayaki = await getDorayaki();
+        loaddorayaki(dorayaki);
+        loadingbar = false;
     });
 
     $: (() => {
@@ -49,6 +70,7 @@
     })();
 
     $: batch = [].concat(batch_);
+    $: search(searchval);
 </script>
 
 <svelte:head>
@@ -63,7 +85,7 @@
             <Row>
                 <Column lg={16}>
                     <Breadcrumb noTrailingSlash aria-label="Page navigation">
-                        <BreadcrumbItem href="/#/">Home</BreadcrumbItem>
+                        <BreadcrumbItem href="#/">Home</BreadcrumbItem>
                         <BreadcrumbItem>Dorayaki</BreadcrumbItem>
                     </Breadcrumb>
                 </Column>
@@ -75,6 +97,12 @@
             <Grid>
                 <Row>
                     <h3 style="margin-bottom: 1.5rem">Doramonangis Dorayaki</h3>
+                </Row>
+                <Row>
+                    <Search
+                        bind:value={searchval}
+                        placeholder="Search by rasa.."
+                    />
                 </Row>
             </Grid>
         </div>

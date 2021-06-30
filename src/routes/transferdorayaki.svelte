@@ -59,15 +59,13 @@
 
         if (!data) {
             loadingbar = false;
-            location.href = "/#/notfound";
+            location.href = "#/notfound";
             return;
         }
 
         let req = await getTokoJumlahDorayakiById(loginval.id, params.id);
         if (!req || req.jumlah < 1) {
-            loadingbar = false;
-            location.href = "/#/notfound";
-            return;
+            req = { jumlah: 0 };
         }
 
         mysum = req.jumlah;
@@ -96,7 +94,7 @@
     }
 
     async function transfer() {
-        if (parseInt(input) > awalmysum) {
+        if (parseInt(input) > awalmysum || parseInt(input) === 0) {
             return;
         }
 
@@ -113,6 +111,7 @@
     }
 
     async function updatestoktarget(e) {
+        loadingbar = true;
         let id = parseInt(e.detail);
         let req = await getTokoJumlahDorayakiById(id, params.id);
         if (!req) {
@@ -121,6 +120,7 @@
         input = 0;
         targetsum = req.jumlah;
         awaltargetsum = req.jumlah;
+        loadingbar = false;
     }
 
     let isinstore = true;
@@ -147,9 +147,9 @@
             <Row>
                 <Column lg={16}>
                     <Breadcrumb noTrailingSlash aria-label="Page navigation">
-                        <BreadcrumbItem href="/#/">Home</BreadcrumbItem>
-                        <BreadcrumbItem href="/#/store">Store</BreadcrumbItem>
-                        <BreadcrumbItem href="/#/store/transfer">
+                        <BreadcrumbItem href="#/">Home</BreadcrumbItem>
+                        <BreadcrumbItem href="#/store">Store</BreadcrumbItem>
+                        <BreadcrumbItem href="#/store/transfer">
                             Transfer
                         </BreadcrumbItem>
                         <BreadcrumbItem>{params.id}</BreadcrumbItem>
@@ -216,14 +216,16 @@
                                     </Column>
                                 </Row>
                             </FormGroup>
-                            <br />
-                            <Button
-                                {disabled}
-                                style="color: white;"
-                                type="submit"
-                            >
-                                Transfer
-                            </Button>
+                            <div class="d-flex justify-center mt-4 mb-4">
+                                <Button
+                                    {disabled}
+                                    style="color: white;"
+                                    type="submit"
+                                    icon={ArrowRight32}
+                                >
+                                    Transfer
+                                </Button>
+                            </div>
                         </Form>
                     </Column>
                 </Row>

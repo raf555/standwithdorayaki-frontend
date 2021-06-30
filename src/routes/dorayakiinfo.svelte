@@ -66,7 +66,7 @@
         await deleteDorayaki(params.id);
 
         disabled = false;
-        location.href = "/#/dorayaki";
+        location.href = "#/dorayaki";
     };
 
     const updatedorayaki = async () => {
@@ -100,7 +100,7 @@
         let data = await getDorayakiById(params.id);
         if (!data) {
             loadingbar = false;
-            location.href = "/#/notfound";
+            location.href = "#/notfound";
             return;
         }
 
@@ -140,7 +140,7 @@
 </script>
 
 <svelte:head>
-    <title>Doramonangis - Home</title>
+    <title>Doramonangis - Dorayaki</title>
 </svelte:head>
 
 <Loading description="loading" active={loadingbar} />
@@ -151,8 +151,8 @@
             <Row>
                 <Column lg={16}>
                     <Breadcrumb noTrailingSlash aria-label="Page navigation">
-                        <BreadcrumbItem href="/#/">Home</BreadcrumbItem>
-                        <BreadcrumbItem href="/#/dorayaki"
+                        <BreadcrumbItem href="#/">Home</BreadcrumbItem>
+                        <BreadcrumbItem href="#/dorayaki"
                             >Dorayaki</BreadcrumbItem
                         >
                         <BreadcrumbItem>{params.id}</BreadcrumbItem>

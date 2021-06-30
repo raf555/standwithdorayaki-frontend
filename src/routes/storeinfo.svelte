@@ -98,7 +98,7 @@
         if (params.id === loginval.id) {
             logout(true);
         } else {
-            location.href = "/#/store";
+            location.href = "#/store";
         }
     };
 
@@ -108,7 +108,7 @@
 
         if (data.length === 0) {
             loadingbar = false;
-            location.href = "/#/notfound";
+            location.href = "#/notfound";
             return;
         }
 
@@ -201,8 +201,8 @@
             <Row>
                 <Column lg={16}>
                     <Breadcrumb noTrailingSlash aria-label="Page navigation">
-                        <BreadcrumbItem href="/#/">Home</BreadcrumbItem>
-                        <BreadcrumbItem href="/#/store">Store</BreadcrumbItem>
+                        <BreadcrumbItem href="#/">Home</BreadcrumbItem>
+                        <BreadcrumbItem href="#/store">Store</BreadcrumbItem>
                         <BreadcrumbItem>{params.id}</BreadcrumbItem>
                     </Breadcrumb>
                 </Column>

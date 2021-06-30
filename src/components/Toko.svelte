@@ -17,7 +17,7 @@
     export let gambar =
         "https://lh4.googleusercontent.com/rjZMjgE3b8-JIkJ2q0YfZbRG3gGdlBrxIykPMGwXY1oa3zAE84bJOEis0GyDR7cAIhi1wtquBCdroHb5V0BoBckfLbMk7ipjk9UoiCOCO5X9j0o5rp7pTQ9aRxFhTW40fADBml6v";
 
-    let addr = jalan + " " + kecamatan;
+    let addr = jalan + ", " + kecamatan;
 </script>
 
 <Card
@@ -30,12 +30,12 @@
     <CardTitle>
         Toko {nama.match(/.{1,10}/)[0] + (nama.length > 10 ? ".." : "")}
     </CardTitle>
-    <CardSubtitle>{provinsi}</CardSubtitle>
+    <CardSubtitle>Provinsi: {provinsi}</CardSubtitle>
     <CardText style="height: 50px">
         {addr.match(/.{1,25}/)[0] + (addr.length > 25 ? ".." : "")}
     </CardText>
     <CardActions>
-        <MButton text on:click={() => (location.href = "/#/store/" + id)}>
+        <MButton text on:click={() => (location.href = "#/store/" + id)}>
             Visit
         </MButton>
     </CardActions>

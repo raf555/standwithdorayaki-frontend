@@ -7,6 +7,8 @@
         Row,
         Column,
         Loading,
+        Search,
+        Tooltip,
     } from "carbon-components-svelte";
     import { Divider } from "svelte-materialify";
     import { onMount, onDestroy } from "svelte";
@@ -20,25 +22,85 @@
     let theme = "g10";
     let loginval = getloggedinfo();
     let batch_ = [];
+    let toko = [];
     let loadingbar = true;
+    let searchval = "";
+
+    const search = (searchval) => {
+        let val = searchval;
+        if (!val) {
+            loadtoko(toko);
+            return;
+        }
+        let condition = (d) => {
+            let val = searchval;
+
+            let kecamatanregex = /kecamatan:\"(.*?)\"\s?/;
+            let provinsiregex = /provinsi:\"(.*?)\"\s?/;
+            let jalanregex = /jalan:\"(.*?)\"\s?/;
+
+            let kecamatancon = false;
+            let provinsicon = false;
+            let jalancon = false;
+            let base = false;
+
+            if (jalanregex.test(val)) {
+                let exec = jalanregex.exec(val);
+                let q = exec[1];
+                val = val.replace(exec[0], "");
+                jalancon = d.jalan
+                    .toLowerCase()
+                    .match(new RegExp(q.toLowerCase()));
+            }
+
+            if (kecamatanregex.test(val)) {
+                let exec = kecamatanregex.exec(val);
+                let q = exec[1];
+                val = val.replace(exec[0], "");
+                kecamatancon = d.kecamatan
+                    .toLowerCase()
+                    .match(new RegExp(q.toLowerCase()));
+            }
+
+            if (provinsiregex.test(val)) {
+                let exec = provinsiregex.exec(val);
+                let q = exec[1];
+                val = val.replace(exec[0], "");
+                provinsicon = d.provinsi
+                    .toLowerCase()
+                    .match(new RegExp(q.toLowerCase()));
+            }
+
+            if (!!val) {
+                base = d.nama
+                    .toLowerCase()
+                    .match(new RegExp(val.toLowerCase()));
+            }
+
+            return base || kecamatancon || provinsicon || jalancon;
+        };
+
+        loadtoko(toko.filter((d) => condition(d)));
+    };
 
     const loadtoko = (toko) => {
         const count = (i, n) => (i - (i % n)) / n;
-
-        toko = toko.sort((x, y) => x.nama.toLowerCase() - y.nama.toLowerCase());
+        batch_ = [];
+        toko = toko.sort((x, y) => x.nama.localeCompare(y.nama));
         for (let i = 0; i < count(toko.length, 4) + 1; i++) {
             batch_.push([]);
         }
         for (let i = 0; i < toko.length; i++) {
             batch_[count(i, 4)].push(toko[i]);
         }
-        loadingbar = false;
         batch = [].concat(batch_);
     };
 
     onMount(async () => {
         loginval = await verifylogindata();
-        loadtoko(await getToko());
+        toko = await getToko();
+        loadtoko(toko);
+        loadingbar = false;
     });
 
     $: (() => {
@@ -49,6 +111,7 @@
     })();
 
     $: batch = [].concat(batch_);
+    $: search(searchval);
 </script>
 
 <svelte:head>
@@ -63,7 +126,7 @@
             <Row>
                 <Column lg={16}>
                     <Breadcrumb noTrailingSlash aria-label="Page navigation">
-                        <BreadcrumbItem href="/#/">Home</BreadcrumbItem>
+                        <BreadcrumbItem href="#/">Home</BreadcrumbItem>
                         <BreadcrumbItem>Store</BreadcrumbItem>
                     </Breadcrumb>
                 </Column>
@@ -75,6 +138,20 @@
             <Grid>
                 <Row>
                     <h3 style="margin-bottom: 1.5rem">Doramonangis Store</h3>
+                </Row>
+                <Row>
+                    <Column>
+                        <Search
+                            bind:value={searchval}
+                            placeholder="Search by name/jalan/kecamatan/provinsi.."
+                        />
+                    </Column>
+                    <Tooltip tooltipBodyId="tooltip-body">
+                        <p id="tooltip-body">
+                            Untuk jalan/kecamatan/provinsi, gunakan tambahan
+                            `nama:"query"`, contoh: `kecamatan:"kelapa gading"`
+                        </p>
+                    </Tooltip>
                 </Row>
             </Grid>
         </div>

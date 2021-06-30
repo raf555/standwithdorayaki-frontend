@@ -98,8 +98,8 @@
             <Row>
                 <Column lg={16}>
                     <Breadcrumb noTrailingSlash aria-label="Page navigation">
-                        <BreadcrumbItem href="/#/">Home</BreadcrumbItem>
-                        <BreadcrumbItem href="/#/store">Store</BreadcrumbItem>
+                        <BreadcrumbItem href="#/">Home</BreadcrumbItem>
+                        <BreadcrumbItem href="#/store">Store</BreadcrumbItem>
                         <BreadcrumbItem>Transfer</BreadcrumbItem>
                     </Breadcrumb>
                 </Column>

@@ -29,7 +29,7 @@
   let loginfo = getloggedinfo();
 </script>
 
-<Header company="Doremonangis" platformName="Dashboard" href="/#/">
+<Header company="Doremonangis" platformName="Dashboard" href="#/">
   <div slot="skip-to-content">
     <SkipToContent />
   </div>
@@ -46,28 +46,28 @@
     <HeaderAction bind:isOpen transition={false}>
       <HeaderPanelLinks>
         <HeaderPanelDivider>Dorayaki</HeaderPanelDivider>
-        <HeaderPanelLink href="/#/dorayaki/">All Dorayaki</HeaderPanelLink>
-        <HeaderPanelLink href="/#/dorayaki/new"
+        <HeaderPanelLink href="#/dorayaki/">All Dorayaki</HeaderPanelLink>
+        <HeaderPanelLink href="#/dorayaki/new"
           >Add new Dorayaki</HeaderPanelLink
         >
         <!--<HeaderPanelLink href="#/dorayaki/delete">Delete Dorayaki</HeaderPanelLink>-->
 
         <HeaderPanelDivider>Dorayaki Store</HeaderPanelDivider>
-        <HeaderPanelLink href="/#/store">All Store</HeaderPanelLink>
+        <HeaderPanelLink href="#/store">All Store</HeaderPanelLink>
         {#if loginfo}
-          <HeaderPanelLink href={"/#/store/" + loginfo.id}
+          <HeaderPanelLink href={"#/store/" + loginfo.id}
             >Add/Remove Dorayaki</HeaderPanelLink
           >
         {/if}
-        <HeaderPanelLink href="/#/store/transfer"
+        <HeaderPanelLink href="#/store/transfer"
           >Transfer Dorayaki</HeaderPanelLink
         >
 
         <HeaderPanelDivider>Other</HeaderPanelDivider>
-        <HeaderPanelLink href="/#/setting">Setting</HeaderPanelLink>
+        <HeaderPanelLink href="#/setting">Setting</HeaderPanelLink>
         {#if loginfo}
           <HeaderPanelDivider>User</HeaderPanelDivider>
-          <HeaderPanelLink href={"/#/store/" + loginfo.id}>
+          <HeaderPanelLink href={"#/store/" + loginfo.id}>
             Logged in as {loginfo.nama.match(/.{1,10}/)[0] +
               (loginfo.nama.length > 10 ? ".." : "")}
           </HeaderPanelLink>
@@ -75,8 +75,8 @@
           >
         {:else}
           <HeaderPanelDivider>User (Logged in as Guest)</HeaderPanelDivider>
-          <HeaderPanelLink href="/#/login">Login</HeaderPanelLink>
-          <HeaderPanelLink href="/#/register"
+          <HeaderPanelLink href="#/login">Login</HeaderPanelLink>
+          <HeaderPanelLink href="#/register"
             >Register new Store</HeaderPanelLink
           >
         {/if}

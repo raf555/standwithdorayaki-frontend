@@ -67,7 +67,7 @@
   };
 
   $: (() => {
-    if (loginval) location.href = "/#/";
+    if (loginval) location.href = "#/";
   })();
 </script>
 

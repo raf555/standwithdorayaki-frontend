@@ -28,12 +28,11 @@
   });
 
   $: (() => {
-        if (!loginval) {
-            logout();
-            location.href = "#/login";
-        }
-    })();
-    
+    if (!loginval) {
+      logout();
+      location.href = "#/login";
+    }
+  })();
 </script>
 
 <svelte:head>
@@ -47,7 +46,7 @@
       <Row>
         <Column lg={16}>
           <Breadcrumb noTrailingSlash aria-label="Page navigation">
-            <BreadcrumbItem href="/#/">Home /</BreadcrumbItem>
+            <BreadcrumbItem href="#/">Home /</BreadcrumbItem>
           </Breadcrumb>
         </Column>
       </Row>
@@ -71,7 +70,11 @@
         style="max-width:300px;margin:10px"
         class="grey lighten-2 theme--light"
       >
-        <img src="//picsum.photos/300" alt="background" />
+        <img
+          src="https://i.ibb.co/D8NTgxj/image.png"
+          alt="background"
+          style="width:300px; height:300px"
+        />
         <CardText>
           <div class="text--primary text-h4">Dorayaki</div>
           <div class="text--primary">Cek daftar dorayaki yang ada</div>
@@ -80,7 +83,7 @@
           <MButton
             text
             class="primary-text"
-            on:click={() => (location.href = "/#/dorayaki")}>Click here</MButton
+            on:click={() => (location.href = "#/dorayaki")}>Click here</MButton
           >
         </CardActions>
       </Card>
@@ -90,7 +93,11 @@
         style="max-width:300px;margin:10px"
         class="grey lighten-2 theme--light"
       >
-        <img src="//picsum.photos/300" alt="background" />
+        <img
+          src="https://lh4.googleusercontent.com/rjZMjgE3b8-JIkJ2q0YfZbRG3gGdlBrxIykPMGwXY1oa3zAE84bJOEis0GyDR7cAIhi1wtquBCdroHb5V0BoBckfLbMk7ipjk9UoiCOCO5X9j0o5rp7pTQ9aRxFhTW40fADBml6v"
+          alt="background"
+          style="width:300px; height:300px"
+        />
         <CardText>
           <div class="text--primary text-h4">Toko Dorayaki</div>
           <div class="text--primary">Cek daftar toko dorayaki yang ada</div>
@@ -99,7 +106,7 @@
           <MButton
             text
             class="primary-text"
-            on:click={() => (location.href = "/#/store")}>Click here</MButton
+            on:click={() => (location.href = "#/store")}>Click here</MButton
           >
         </CardActions>
       </Card>

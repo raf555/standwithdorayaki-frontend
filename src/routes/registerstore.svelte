@@ -79,11 +79,11 @@
         invalidkecamatanmsg = "";
         invalidprov = false;
         invalidprovmsg = "";
-        location.href = "/#/login";
+        location.href = "#/login";
     };
 
     $: (() => {
-        if (loginval) location.href = "/#/";
+        if (loginval) location.href = "#/";
     })();
 </script>
 
