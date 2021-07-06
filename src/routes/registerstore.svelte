@@ -15,7 +15,7 @@
     import Header from "./../components/Header.svelte";
     import Theme from "./../components/Theme.svelte";
     import { getloggedinfo } from "./../js/auth.js";
-    import { createToko } from "./../js/tokoapi.js";
+    import { createToko, getToko } from "./../js/tokoapi.js";
     import Login16 from "carbon-icons-svelte/lib/Login16";
     import { Divider } from "svelte-materialify";
 
@@ -64,6 +64,19 @@
             disabled = false;
             return;
         }
+
+        let listtoko = await getToko();
+
+        if (
+            listtoko.filter((d) => d.nama.toLowerCase() === nama.toLowerCase())
+                .length > 0
+        ) {
+            invalidnama = true;
+            invalidnamamsg = "Nama Toko udah ada!";
+            disabled = false;
+            return;
+        }
+
         let out = await createToko({
             nama: nama,
             jalan: jalan,
@@ -170,7 +183,12 @@
                         }}
                     />
                 </FormGroup>
-                <Button {disabled} icon={Login16} type="submit" style="color: white;">
+                <Button
+                    {disabled}
+                    icon={Login16}
+                    type="submit"
+                    style="color: white;"
+                >
                     Register
                 </Button>
             </Form>

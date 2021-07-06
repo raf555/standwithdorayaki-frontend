@@ -18,14 +18,17 @@
     import Theme from "./../components/Theme.svelte";
     import { getloggedinfo, verifylogindata, logout } from "./../js/auth.js";
     import Add20 from "carbon-icons-svelte/lib/Add20";
-    import { createDorayaki } from "./../js/dorayakiapi.js";
+    import { createDorayaki, getDorayaki } from "./../js/dorayakiapi.js";
     import Dorayaki from "./../components/Dorayaki.svelte";
 
     let theme = "g10";
     let loginval = getloggedinfo();
     let batch_ = [];
     let disabled = false;
-    let rasa, deskripsi, gambar;
+    let rasa = "hambar";
+    let deskripsi = "dorayaki hambar hoek";
+    let gambar =
+        "https://www.resepistimewa.com/wp-content/uploads/dorayaki.jpg";
     let invalidrasa, invaliddeskripsi, invalidgambar;
     let invalidrasamsg, invaliddeskripsimsg, invalidgambarmsg;
 
@@ -48,6 +51,19 @@
                 invalidgambar = true;
                 invalidgambarmsg = "Empty input!";
             }
+            disabled = false;
+            return;
+        }
+
+        let listdorayaki = await getDorayaki();
+
+        if (
+            listdorayaki.filter(
+                (d) => d.rasa.toLowerCase() === rasa.toLowerCase()
+            ).length > 0
+        ) {
+            invalidrasa = true;
+            invalidrasamsg = "Rasa udah ada!";
             disabled = false;
             return;
         }
