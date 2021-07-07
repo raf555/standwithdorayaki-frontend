@@ -12,10 +12,10 @@
         FormGroup,
     } from "carbon-components-svelte";
     import { onMount } from "svelte";
-    import Header from "./../components/Header.svelte";
-    import Theme from "./../components/Theme.svelte";
-    import { getloggedinfo } from "./../js/auth.js";
-    import { createToko, getToko } from "./../js/tokoapi.js";
+    import Header from "./../../components/Header.svelte";
+    import Theme from "./../../components/Theme.svelte";
+    import { getloggedinfo } from "./../../js/auth.js";
+    import { createToko, getToko } from "./../../js/tokoapi.js";
     import Login16 from "carbon-icons-svelte/lib/Login16";
     import { Divider } from "svelte-materialify";
 

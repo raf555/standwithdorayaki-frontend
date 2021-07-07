@@ -14,14 +14,14 @@
         Button,
     } from "carbon-components-svelte";
     import { onMount } from "svelte";
-    import Header from "./../components/Header.svelte";
-    import Theme from "./../components/Theme.svelte";
-    import { getloggedinfo, verifylogindata, logout } from "./../js/auth.js";
+    import Header from "./../../components/Header.svelte";
+    import Theme from "./../../components/Theme.svelte";
+    import { getloggedinfo, verifylogindata, logout } from "./../../js/auth.js";
     import {} from "svelte-materialify";
     import { Divider } from "svelte-materialify";
-    import { getDorayakiById } from "./../js/dorayakiapi.js";
-    import { getTokoDorayaki } from "./../js/tokoapi.js";
-    import Dorayaki from "./../components/Dorayaki.svelte";
+    import { getDorayakiById } from "./../../js/dorayakiapi.js";
+    import { getTokoDorayaki } from "./../../js/tokoapi.js";
+    import Dorayaki from "./../../components/Dorayaki.svelte";
 
     let theme = "g10";
 

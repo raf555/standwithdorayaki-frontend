@@ -18,9 +18,9 @@
     import Add20 from "carbon-icons-svelte/lib/Add20";
     import Delete20 from "carbon-icons-svelte/lib/Delete20";
     import Restart20 from "carbon-icons-svelte/lib/Restart16";
-    import Header from "./../components/Header.svelte";
-    import Theme from "./../components/Theme.svelte";
-    import { getloggedinfo, verifylogindata, logout } from "./../js/auth.js";
+    import Header from "./../../components/Header.svelte";
+    import Theme from "./../../components/Theme.svelte";
+    import { getloggedinfo, verifylogindata, logout } from "./../../js/auth.js";
     import {
         Col as MCol,
         Row as MRow,
@@ -28,16 +28,16 @@
         Tab,
         TabContent,
     } from "svelte-materialify";
-    import Dorayaki from "./../components/Dorayaki.svelte";
-    import randomcolor from "./../js/randomcolor.js";
+    import Dorayaki from "./../../components/Dorayaki.svelte";
+    import randomcolor from "./../../js/randomcolor.js";
     import { Divider } from "svelte-materialify";
-    import { getDorayakiById } from "./../js/dorayakiapi.js";
+    import { getDorayakiById } from "./../../js/dorayakiapi.js";
     import {
         getTokoDorayaki,
         getTokoById,
         updateToko,
         deleteToko,
-    } from "./../js/tokoapi.js";
+    } from "./../../js/tokoapi.js";
 
     let theme = "g10";
 

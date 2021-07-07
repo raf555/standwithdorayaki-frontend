@@ -14,12 +14,12 @@
     } from "carbon-components-svelte";
     import { Divider } from "svelte-materialify";
     import { onMount } from "svelte";
-    import Header from "./../components/Header.svelte";
-    import Theme from "./../components/Theme.svelte";
-    import { getloggedinfo, verifylogindata, logout } from "./../js/auth.js";
+    import Header from "./../../components/Header.svelte";
+    import Theme from "./../../components/Theme.svelte";
+    import { getloggedinfo, verifylogindata, logout } from "./../../js/auth.js";
     import Add20 from "carbon-icons-svelte/lib/Add20";
-    import { createDorayaki, getDorayaki } from "./../js/dorayakiapi.js";
-    import Dorayaki from "./../components/Dorayaki.svelte";
+    import { createDorayaki, getDorayaki } from "./../../js/dorayakiapi.js";
+    import Dorayaki from "./../../components/Dorayaki.svelte";
 
     let theme = "g10";
     let loginval = getloggedinfo();

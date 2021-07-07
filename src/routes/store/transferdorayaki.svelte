@@ -17,10 +17,10 @@
         Button,
     } from "carbon-components-svelte";
     import { onMount } from "svelte";
-    import Header from "../components/Header.svelte";
-    import Theme from "../components/Theme.svelte";
+    import Header from "../../components/Header.svelte";
+    import Theme from "../../components/Theme.svelte";
     import ArrowRight32 from "carbon-icons-svelte/lib/ArrowRight32";
-    import { getloggedinfo, verifylogindata, logout } from "../js/auth.js";
+    import { getloggedinfo, verifylogindata, logout } from "../../js/auth.js";
     import {
         Col as MCol,
         Row as MRow,
@@ -29,14 +29,14 @@
         TabContent,
     } from "svelte-materialify";
     import { Divider } from "svelte-materialify";
-    import { getDorayakiById } from "../js/dorayakiapi.js";
+    import { getDorayakiById } from "../../js/dorayakiapi.js";
     import {
         getTokoJumlahDorayakiById,
         getToko,
         updateTokoDorayaki,
         tokoDorayakiBaru,
-    } from "../js/tokoapi.js";
-    import Dorayaki from "./../components/Dorayaki.svelte";
+    } from "../../js/tokoapi.js";
+    import Dorayaki from "./../../components/Dorayaki.svelte";
 
     let theme = "g10";
 

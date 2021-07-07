@@ -12,12 +12,12 @@
     } from "carbon-components-svelte";
     import { Divider } from "svelte-materialify";
     import { onMount, onDestroy } from "svelte";
-    import Header from "./../components/Header.svelte";
-    import Theme from "./../components/Theme.svelte";
-    import Toko from "./../components/Toko.svelte";
-    import { getloggedinfo, verifylogindata, logout } from "./../js/auth.js";
-    import { getToko } from "./../js/tokoapi.js";
-    import randomcolor from "./../js/randomcolor.js";
+    import Header from "./../../components/Header.svelte";
+    import Theme from "./../../components/Theme.svelte";
+    import Toko from "./../../components/Toko.svelte";
+    import { getloggedinfo, verifylogindata, logout } from "./../../js/auth.js";
+    import { getToko } from "./../../js/tokoapi.js";
+    import randomcolor from "./../../js/randomcolor.js";
 
     let theme = "g10";
     let loginval = getloggedinfo();
