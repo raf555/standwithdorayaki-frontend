@@ -18,6 +18,8 @@ Untuk mem-build aplikasi menjadi file *static* untuk dijalankan pada mode *produ
 
 Fitur-fitur yang ada pada aplikasi ini sangat *straightforward* sehingga pasti dapat langsung dipahami saat menggunakan aplikasi.
 
+Untuk development, aplikasi dapat dibuka melalui peramban dengan alamat situs `http://localhost:8080/`
+
 ### Fitur yang ada
 
 1. Menambah/menghapus dorayaki yang ada
