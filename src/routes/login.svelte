@@ -72,7 +72,7 @@
 </script>
 
 <svelte:head>
-  <title>Doramonangis - Login</title>
+  <title>SWD - Login</title>
 </svelte:head>
 
 <Loading description="loading" active={loadingbar} />
@@ -94,7 +94,7 @@
     <div class="d-flex justify-center mt-4 mb-4">
       <Grid>
         <Row>
-          <h3 style="margin-bottom: 1.5rem">Doramonangis Login</h3>
+          <h3 style="margin-bottom: 1.5rem">Login</h3>
         </Row>
       </Grid>
     </div>

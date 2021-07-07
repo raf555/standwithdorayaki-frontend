@@ -87,7 +87,7 @@
 </script>
 
 <svelte:head>
-    <title>Doramonangis - Transfer</title>
+    <title>SWD - Transfer</title>
 </svelte:head>
 
 <Loading description="loading" active={loadingbar} />

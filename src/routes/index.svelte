@@ -36,7 +36,7 @@
 </script>
 
 <svelte:head>
-  <title>Doramonangis - Home</title>
+  <title>SWD - Home</title>
 </svelte:head>
 
 <Theme persist bind:theme>

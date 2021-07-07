@@ -101,7 +101,7 @@
 </script>
 
 <svelte:head>
-    <title>Doramonangis - Register</title>
+    <title>SWD - Register</title>
 </svelte:head>
 
 <Theme persist bind:theme>
@@ -123,7 +123,7 @@
             <Grid>
                 <Row>
                     <h3 style="margin-bottom: 1.5rem">
-                        Doramonangis Register Store
+                        Stand With Dorayaki - Register Store
                     </h3>
                 </Row>
             </Grid>

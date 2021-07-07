@@ -98,7 +98,7 @@
 </script>
 
 <svelte:head>
-    <title>Doramonangis - Dorayaki</title>
+    <title>SWD - Dorayaki</title>
 </svelte:head>
 
 <Theme persist bind:theme>
@@ -123,7 +123,7 @@
             <Grid>
                 <Row>
                     <h3 style="margin-bottom: 1.5rem">
-                        Doramonangis New Dorayaki
+                        Create New Dorayaki
                     </h3>
                 </Row>
             </Grid>

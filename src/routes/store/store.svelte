@@ -115,7 +115,7 @@
 </script>
 
 <svelte:head>
-    <title>Doramonangis - Store</title>
+    <title>SWD - Store</title>
 </svelte:head>
 
 <Loading description="loading" active={loadingbar} />
@@ -137,7 +137,7 @@
         <div class="d-flex justify-center mt-4 mb-4">
             <Grid>
                 <Row>
-                    <h3 style="margin-bottom: 1.5rem">Doramonangis Store</h3>
+                    <h3 style="margin-bottom: 1.5rem">Stand With Dorayaki Store List</h3>
                 </Row>
                 <Row>
                     <Column>

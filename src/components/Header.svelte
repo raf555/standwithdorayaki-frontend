@@ -29,7 +29,7 @@
   let loginfo = getloggedinfo();
 </script>
 
-<Header company="Doremonangis" platformName="Dashboard" href="#/">
+<Header company="Stand With Dorayaki" platformName="Dashboard" href="#/">
   <div slot="skip-to-content">
     <SkipToContent />
   </div>

@@ -46,9 +46,9 @@
     let adddisabled = false;
     let disabled = false;
 
-    let rasa = "",
+    let rasa = "Hambar",
         id = "",
-        deskripsi = "",
+        deskripsi = "Dorayaki rasa hambar hoek",
         gambar = "",
         lastupdate = "";
 
@@ -140,7 +140,7 @@
 </script>
 
 <svelte:head>
-    <title>Doramonangis - Dorayaki</title>
+    <title>SWD - Dorayaki</title>
 </svelte:head>
 
 <Loading description="loading" active={loadingbar} />

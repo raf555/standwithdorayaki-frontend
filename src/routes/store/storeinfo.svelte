@@ -190,7 +190,7 @@
 </script>
 
 <svelte:head>
-    <title>Doramonangis - Store</title>
+    <title>SWD - Store</title>
 </svelte:head>
 
 <Loading description="loading" active={loadingbar} />

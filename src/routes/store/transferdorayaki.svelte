@@ -136,7 +136,7 @@
 </script>
 
 <svelte:head>
-    <title>Doramonangis - Transfer Dorayaki</title>
+    <title>SWD - Transfer Dorayaki</title>
 </svelte:head>
 
 <Loading description="loading" active={loadingbar} />

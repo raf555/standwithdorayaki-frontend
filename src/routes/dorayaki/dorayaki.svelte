@@ -74,7 +74,7 @@
 </script>
 
 <svelte:head>
-    <title>Doramonangis - Dorayaki</title>
+    <title>SWD - Dorayaki</title>
 </svelte:head>
 
 <Loading description="loading" active={loadingbar} />
@@ -96,7 +96,7 @@
         <div class="d-flex justify-center mt-4 mb-4">
             <Grid>
                 <Row>
-                    <h3 style="margin-bottom: 1.5rem">Doramonangis Dorayaki</h3>
+                    <h3 style="margin-bottom: 1.5rem">Dorayaki List</h3>
                 </Row>
                 <Row>
                     <Search

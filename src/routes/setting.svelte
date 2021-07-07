@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-  <title>Doramonangis - Setting</title>
+  <title>SWD - Setting</title>
 </svelte:head>
 
 <Theme persist bind:theme>
@@ -40,7 +40,7 @@
     <div class="d-flex justify-center mt-4 mb-4">
       <Grid>
         <Row>
-          <h3 style="margin-bottom: 1.5rem">Doramonangis Setting</h3>
+          <h3 style="margin-bottom: 1.5rem">Stand With Dorayaki - Setting</h3>
         </Row>
       </Grid>
     </div>
