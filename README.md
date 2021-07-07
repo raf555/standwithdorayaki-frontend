@@ -1,23 +1,29 @@
-# webpack
+# Stand With Dorayaki - Frontend
 
-> Example set-up using [webpack](https://github.com/webpack/webpack).
+> Repositori ini untuk frontend, backend di [sini](https://github.com/raf555/standwithdorayaki-backend).
 
-## Getting started
+## Scripts
 
-Scaffold a new project using [degit](https://github.com/Rich-Harris/degit):
+Script serbaguna untuk keperluan project.
 
-```sh
-npx degit ibm/carbon-components-svelte#webpack svelte-app
-cd svelte-app
-yarn install
-```
+### `npm run dev`
 
-## Available scripts
+Untuk menjalankan aplikasi dalam mode *development*.
 
-### `yarn dev`
+### `npm run build`
 
-Starts the app in development mode.
+Untuk mem-build aplikasi menjadi file *static* untuk dijalankan pada mode *production*.
 
-### `yarn build`
+## Cara Pakai
 
-Builds the app for production.
+Fitur-fitur yang ada pada aplikasi ini sangat *straightforward* sehingga pasti dapat langsung dipahami saat menggunakan aplikasi.
+
+### Fitur yang ada
+
+1. Menambah/menghapus dorayaki yang ada
+2. Menambah/menghapus toko yang ada
+3. Menambah/menghapus stok dorayaki pada suatu toko
+4. Memindahkan stok dorayaki dari suatu ke toko ke toko lainnya
+5. Melihat stok dorayaki pada suatu toko
+6. Mencari toko berdasarkan nama/jalan/alamat/provinsi
+7. Mencari dorayaki berdasarkan rasa
