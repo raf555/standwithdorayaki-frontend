@@ -65,6 +65,7 @@
 
         <HeaderPanelDivider>Other</HeaderPanelDivider>
         <HeaderPanelLink href="#/setting">Setting</HeaderPanelLink>
+        <HeaderPanelLink href="#/about">About</HeaderPanelLink>
         {#if loginfo}
           <HeaderPanelDivider>User</HeaderPanelDivider>
           <HeaderPanelLink href={"#/store/" + loginfo.id}>

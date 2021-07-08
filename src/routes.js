@@ -2,7 +2,7 @@ import index from './routes/index.svelte';
 import login from './routes/login.svelte';
 import setting from './routes/setting.svelte';
 
-import tes from './routes/tes.svelte';
+import about from './routes/about.svelte';
 import notfound from './routes/404.svelte';
 
 import store from './routes/store/store.svelte';
@@ -20,6 +20,7 @@ export default {
     '/register/': registerstore,
     '/login/': login,
     '/setting/': setting,
+    '/about/': about,
 
     '/store/transfer/:id': transferdorayaki,
     '/store/transfer/': transfer,
@@ -29,7 +30,6 @@ export default {
     '/dorayaki/new': registerdorayaki,
     '/dorayaki/:id': dorayakiinfo,
     '/dorayaki/': dorayaki,
-    
-    '/tes/': tes,
+
     '*': notfound
 };
