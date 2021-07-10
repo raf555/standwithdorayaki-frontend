@@ -29,3 +29,19 @@ Untuk development, aplikasi dapat dibuka melalui peramban dengan alamat situs `h
 5. Melihat stok dorayaki pada suatu toko
 6. Mencari toko berdasarkan nama/jalan/alamat/provinsi
 7. Mencari dorayaki berdasarkan rasa
+
+## Tambahan
+
+### Framework dan Library
+
+1. Framework yang digunakan adalah **Svelte** dengan Library styling kombinasi dari [Svelte Carbon](https://carbon-svelte.vercel.app/) dan [Svelte Materialify](https://svelte-materialify.vercel.app/).
+
+2. Library untuk request menggunakan **Axios**.
+
+### Routing
+
+1. Routing pada aplikasi ini menggunakan Library `svelte-spa-router` yang berbasis HashRouter.
+
+### Bundling
+
+1. Bundling aplikasi menggunakan Webpack.
