@@ -13,7 +13,7 @@ module.exports = {
   stats: "errors-only",
   mode: NODE_ENV,
   devtool: PROD ? false : "cheap-eval-source-map",
-  devServer: {host: '0.0.0.0', historyApiFallback: true },
+  devServer: { host: '0.0.0.0', historyApiFallback: true },
   entry: { bundle: ["./src/index.js"] },
   resolve: {
     alias: { svelte: path.resolve("node_modules", "svelte") },
@@ -41,6 +41,15 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(
+        {
+          NODE_ENV: NODE_ENV,
+          API_URL_DEVELOPMENT: "http://localhost:3000",
+          API_URL_PRODUCTION: "http://localhost:3000"
+        }
+      )
+    }),
     new CleanWebpackPlugin(),
     new CopyPlugin({ patterns: [{ from: "public" }] }),
     new MiniCssExtractPlugin({

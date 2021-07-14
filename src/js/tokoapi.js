@@ -1,13 +1,14 @@
 //ref: https://dev.to/lukocastillo/svelte-3-how-to-connect-your-app-with-a-rest-api-axios-2h4e
 
 import api from "./api.js";
+import { API_URL } from "./env.js";
 
-const API = api("http://localhost:3000/api/toko/");
+const API = api(API_URL + "/api/toko/");
 
 // item / dorayaki
 export const getTokoDorayaki = async (id) => {
     try {
-        let data = await API.get("/"+id+"/item");
+        let data = await API.get("/" + id + "/item");
         return data.data;
     } catch (e) {
         console.error(e);
@@ -16,7 +17,7 @@ export const getTokoDorayaki = async (id) => {
 
 export const getTokoJumlahDorayakiById = async (idtoko, iddorayaki) => {
     try {
-        let data = await API.get("/"+idtoko+"/item/"+iddorayaki);
+        let data = await API.get("/" + idtoko + "/item/" + iddorayaki);
         return data.data;
     } catch (e) {
         console.error(e);
@@ -28,7 +29,7 @@ export const tokoDorayakiBaru = async (idtoko, iddorayaki) => {
         let payload = {
             iddorayaki: iddorayaki
         }
-        let data = await API.post("/"+idtoko+"/item", payload);
+        let data = await API.post("/" + idtoko + "/item", payload);
         return data.data;
     } catch (e) {
         console.error(e);
@@ -40,7 +41,7 @@ export const updateTokoDorayaki = async (idtoko, iddorayaki, jumlah) => {
         let payload = {
             jumlah: jumlah
         }
-        let data = await API.put("/"+idtoko+"/item/"+iddorayaki, payload);
+        let data = await API.put("/" + idtoko + "/item/" + iddorayaki, payload);
         return data.data;
     } catch (e) {
         console.error(e);
@@ -49,7 +50,7 @@ export const updateTokoDorayaki = async (idtoko, iddorayaki, jumlah) => {
 
 export const deleteTokoDorayaki = async (idtoko, iddorayaki) => {
     try {
-        let data = await API.delete("/"+idtoko+"/item/"+iddorayaki);
+        let data = await API.delete("/" + idtoko + "/item/" + iddorayaki);
         return data.data;
     } catch (e) {
         console.error(e);
@@ -68,7 +69,7 @@ export const getToko = async () => {
 
 export const getTokoById = async (id) => {
     try {
-        let data = await API.get("/"+id);
+        let data = await API.get("/" + id);
         return data.data;
     } catch (e) {
         console.error(e);
@@ -86,7 +87,7 @@ export const createToko = async (payload) => {
 
 export const updateToko = async (id, payload) => {
     try {
-        let data = await API.put("/"+id, payload);
+        let data = await API.put("/" + id, payload);
         return data.data;
     } catch (e) {
         console.error(e);
@@ -95,7 +96,7 @@ export const updateToko = async (id, payload) => {
 
 export const deleteToko = async (id) => {
     try {
-        let data = await API.delete("/"+id);
+        let data = await API.delete("/" + id);
         return data.data;
     } catch (e) {
         console.error(e);
