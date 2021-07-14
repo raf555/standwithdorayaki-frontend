@@ -45,7 +45,7 @@
 
         batch_ = [];
         dorayaki = dorayaki.sort((x, y) => x.rasa.localeCompare(y.rasa));
-        console.log("a".localeCompare());
+        //console.log("a".localeCompare());
         for (let i = 0; i < count(dorayaki.length, 4) + 1; i++) {
             batch_.push([]);
         }
