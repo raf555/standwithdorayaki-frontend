@@ -66,6 +66,9 @@
             inputid = listdorayaki[0].id;
             chosendorayaki = listdorayaki[0];
         }
+        if (listdorayaki.length === 0) {
+            bolehtrf = false;
+        }
         loadingbar = false;
         disabled = false;
     });
@@ -77,6 +80,8 @@
             chosendorayaki = out;
         }
     }
+
+    $: bolehtrf = true;
 
     $: (() => {
         if (!loginval) {
@@ -116,42 +121,55 @@
         </div>
 
         <div class="d-flex justify-center mt-4 mb-4">
-            <Grid>
-                <Row>
-                    <Column>
-                        <Form on:submit>
-                            <FormGroup>
-                                <Select
-                                    labelText="Choose Dorayaki"
-                                    placeholder="Enter Dorayaki..."
-                                    bind:selected={inputid}
-                                    bind:value={inputid}
-                                    on:change={changedisplaydor}
-                                    {disabled}
-                                >
-                                    {#each listdorayaki as { id, rasa, jumlah }}
-                                        <SelectItem
-                                            value={id}
-                                            text={rasa + " - " + jumlah}
-                                        />
-                                    {/each}
-                                </Select>
-                            </FormGroup>
-                        </Form>
-                    </Column>
-                </Row>
-                <Row>
-                    <Dorayaki
-                        rasa={chosendorayaki.rasa}
-                        deskripsi={chosendorayaki.deskripsi}
-                        gambar={chosendorayaki.gambar}
-                        id={chosendorayaki.id}
-                        jumlah={chosendorayaki.jumlah}
-                        isintrf={true}
-                        isinstore={true}
-                    />
-                </Row>
-            </Grid>
+            {#if !bolehtrf}
+                <Grid>
+                    <Row>
+                        <h4>You don't have any Dorayaki to transfer!</h4>
+                    </Row>
+                    <Row>
+                        <Column />
+                        <h5><a href="#/dorayaki">Add one</a></h5>
+                        <Column />
+                    </Row>
+                </Grid>
+            {:else}
+                <Grid>
+                    <Row>
+                        <Column>
+                            <Form on:submit>
+                                <FormGroup>
+                                    <Select
+                                        labelText="Choose Dorayaki"
+                                        placeholder="Enter Dorayaki..."
+                                        bind:selected={inputid}
+                                        bind:value={inputid}
+                                        on:change={changedisplaydor}
+                                        {disabled}
+                                    >
+                                        {#each listdorayaki as { id, rasa, jumlah }}
+                                            <SelectItem
+                                                value={id}
+                                                text={rasa + " - " + jumlah}
+                                            />
+                                        {/each}
+                                    </Select>
+                                </FormGroup>
+                            </Form>
+                        </Column>
+                    </Row>
+                    <Row>
+                        <Dorayaki
+                            rasa={chosendorayaki.rasa}
+                            deskripsi={chosendorayaki.deskripsi}
+                            gambar={chosendorayaki.gambar}
+                            id={chosendorayaki.id}
+                            jumlah={chosendorayaki.jumlah}
+                            isintrf={true}
+                            isinstore={true}
+                        />
+                    </Row>
+                </Grid>
+            {/if}
         </div>
     </Content>
 </Theme>

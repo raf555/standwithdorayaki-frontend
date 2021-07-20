@@ -98,9 +98,9 @@
     const loaddorayaki = async () => {
         loadingbar = true;
         let data = await getDorayakiById(params.id);
-        if (!data) {
+        if (data.length === 0) {
             loadingbar = false;
-            location.href = "#/notfound";
+            location.href += "/notfound";
             return;
         }
 

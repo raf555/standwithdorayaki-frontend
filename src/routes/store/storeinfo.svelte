@@ -108,7 +108,7 @@
 
         if (data.length === 0) {
             loadingbar = false;
-            location.href = "#/notfound";
+            location.href += "/notfound";
             return;
         }
 

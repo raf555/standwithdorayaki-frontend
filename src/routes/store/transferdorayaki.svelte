@@ -59,7 +59,7 @@
 
         if (!data) {
             loadingbar = false;
-            location.href = "#/notfound";
+            location.href += "/notfound";
             return;
         }
 
