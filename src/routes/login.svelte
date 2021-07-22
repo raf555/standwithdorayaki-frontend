@@ -36,6 +36,7 @@
     loadingbar = true;
     listtoko = await getToko();
     if (listtoko && listtoko.length > 0) {
+      listtoko = listtoko.sort((a, b) => a.nama.localeCompare(b.nama));
       inputid = listtoko[0].id;
     }
     disabled = false;

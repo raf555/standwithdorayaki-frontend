@@ -123,7 +123,7 @@
             <Grid>
                 <Row>
                     <h3 style="margin-bottom: 1.5rem">
-                        Stand With Dorayaki - Register Store
+                        Register Store
                     </h3>
                 </Row>
             </Grid>

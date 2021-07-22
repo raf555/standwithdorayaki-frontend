@@ -35,40 +35,44 @@
         let condition = (d) => {
             let val = searchval;
 
-            let kecamatanregex = /kecamatan:\"(.*?)\"\s?/;
-            let provinsiregex = /provinsi:\"(.*?)\"\s?/;
-            let jalanregex = /jalan:\"(.*?)\"\s?/;
+            let kecamatanregex = /\s?-kecamatan:\"(.*?)\"\s?/;
+            let provinsiregex = /\s?-provinsi:\"(.*?)\"\s?/;
+            let jalanregex = /\s?-jalan:\"(.*?)\"\s?/;
 
             let kecamatancon = false;
             let provinsicon = false;
             let jalancon = false;
-            let base = false;
+            let base = true;
+            let con = true;
 
             if (jalanregex.test(val)) {
                 let exec = jalanregex.exec(val);
                 let q = exec[1];
                 val = val.replace(exec[0], "");
-                jalancon = d.jalan
-                    .toLowerCase()
-                    .match(new RegExp(q.toLowerCase()));
+                jalancon = new RegExp(q.toLowerCase()).test(
+                    d.jalan.toLowerCase()
+                );
+                con = con && jalancon;
             }
 
             if (kecamatanregex.test(val)) {
                 let exec = kecamatanregex.exec(val);
                 let q = exec[1];
                 val = val.replace(exec[0], "");
-                kecamatancon = d.kecamatan
-                    .toLowerCase()
-                    .match(new RegExp(q.toLowerCase()));
+                kecamatancon = new RegExp(q.toLowerCase()).test(
+                    d.kecamatan.toLowerCase()
+                );
+                con = con && kecamatancon;
             }
 
             if (provinsiregex.test(val)) {
                 let exec = provinsiregex.exec(val);
                 let q = exec[1];
                 val = val.replace(exec[0], "");
-                provinsicon = d.provinsi
-                    .toLowerCase()
-                    .match(new RegExp(q.toLowerCase()));
+                provinsicon = new RegExp(q.toLowerCase()).test(
+                    d.provinsi.toLowerCase()
+                );
+                con = con && provinsicon;
             }
 
             if (!!val) {
@@ -77,7 +81,9 @@
                     .match(new RegExp(val.toLowerCase()));
             }
 
-            return base || kecamatancon || provinsicon || jalancon;
+            return base && con;
+
+            // return base || kecamatancon || provinsicon || jalancon;
         };
 
         loadtoko(toko.filter((d) => condition(d)));
@@ -137,7 +143,9 @@
         <div class="d-flex justify-center mt-4 mb-4">
             <Grid>
                 <Row>
-                    <h3 style="margin-bottom: 1.5rem">Stand With Dorayaki Store List</h3>
+                    <h3 style="margin-bottom: 1.5rem">
+                        Stand With Dorayaki Store List
+                    </h3>
                 </Row>
                 <Row>
                     <Column>
