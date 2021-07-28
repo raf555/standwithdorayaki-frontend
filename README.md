@@ -16,6 +16,8 @@ Untuk mem-build aplikasi menjadi file *static* untuk dijalankan pada mode *produ
 
 ## Cara Pakai
 
+**PASTIKAN BACKEND SERVER SUDAH BERJALAN DI ALAMAT `http://localhost:3000`**
+
 Sebelum dijalankan, jalankan `npm install` terlebih dahulu. Untuk mode development dapat langsung dijalankan script `npm run dev`. Untuk mem-build aplikasi, dapat langsung dijalankan script `npm run build` pada terminal, hasil build terdapat pada folder **build**.
 
 Untuk development, aplikasi dapat dibuka melalui peramban dengan alamat situs `http://localhost:8080/`
