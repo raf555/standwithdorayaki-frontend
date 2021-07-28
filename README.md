@@ -38,6 +38,10 @@ Fitur-fitur yang ada pada aplikasi ini sangat *straightforward* sehingga pasti d
 
 Konsep aplikasi ini adalah sebuah *dashboard* admin sederhana untuk mengatur Toko. Sebelum menggunakan aplikasi, pengguna akan diminta untuk login ke Toko tertentu. Sehingga, konteks aplikasi yang berjalan adalah sesuai Toko yang digunakan tadi. Kemudian Toko yang tadi dapat dilakukan perubahan-perubahan seperti mengubah data/menghapus toko, menambah/mengurang/men-transfer dorayaki, dan lain-lain.
 
+#### Cara mencari store berdasarkan query
+
+Saat di halaman `list store`, pada search bar, gunakan query `-nama:"{{query}}"` untuk pencarian khusus, contoh: `-provinsi:"jakarta"`.
+
 ### Framework dan Library
 
 1. Framework yang digunakan adalah **Svelte** dengan Library styling kombinasi dari [Svelte Carbon](https://carbon-svelte.vercel.app/) dan [Svelte Materialify](https://svelte-materialify.vercel.app/).

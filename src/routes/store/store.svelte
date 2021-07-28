@@ -157,7 +157,7 @@
                     <Tooltip tooltipBodyId="tooltip-body">
                         <p id="tooltip-body">
                             Untuk jalan/kecamatan/provinsi, gunakan tambahan
-                            `nama:"query"`, contoh: `kecamatan:"kelapa gading"`
+                            `-nama:"query"`, contoh: `-kecamatan:"kelapa gading"`
                         </p>
                     </Tooltip>
                 </Row>
