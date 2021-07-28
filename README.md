@@ -16,12 +16,12 @@ Untuk mem-build aplikasi menjadi file *static* untuk dijalankan pada mode *produ
 
 ## Cara Pakai
 
-Sebelum dijalankan, untuk mode development dapat langsung dijalankan script `npm run dev`. Untuk mem-build aplikasi, dapat langsung dijalankan script `npm run build` pada terminal, hasil build terdapat pada folder **build**.
+Sebelum dijalankan, jalankan `npm install` terlebih dahulu. Untuk mode development dapat langsung dijalankan script `npm run dev`. Untuk mem-build aplikasi, dapat langsung dijalankan script `npm run build` pada terminal, hasil build terdapat pada folder **build**.
 
 Untuk development, aplikasi dapat dibuka melalui peramban dengan alamat situs `http://localhost:8080/`
 
-
 Fitur-fitur yang ada pada aplikasi ini sangat *straightforward* sehingga pasti dapat langsung dipahami saat menggunakan aplikasi.
+
 ### Fitur yang ada
 
 1. Menambah/menghapus dorayaki yang ada
