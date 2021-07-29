@@ -44,10 +44,6 @@ Konsep aplikasi ini adalah sebuah *dashboard* admin sederhana untuk mengatur Tok
 
 Saat di halaman `list store`, pada search bar, gunakan query `-nama:"{{query}}"` untuk pencarian khusus, contoh: `-provinsi:"jakarta"`.
 
-### Known Bug(s)
-
-1. Kadang-kadang, transfer dorayaki dari satu toko ke toko lainnya, dorayaki asal tidak berkurang, namun kasus ini jarang terjadi.
-
 ### Framework dan Library
 
 1. Framework yang digunakan adalah **Svelte** dengan Library styling kombinasi dari [Svelte Carbon](https://carbon-svelte.vercel.app/) dan [Svelte Materialify](https://svelte-materialify.vercel.app/).

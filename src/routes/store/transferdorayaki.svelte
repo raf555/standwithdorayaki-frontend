@@ -94,18 +94,20 @@
     }
 
     async function transfer() {
-        if (parseInt(input) > awalmysum || parseInt(input) === 0) {
+        if (!inputid || parseInt(input) > awalmysum || parseInt(input) === 0) {
             return;
         }
 
         disabled = true;
+        let tsum = targetsum;
         if (awaltargetsum === 0) {
             await tokoDorayakiBaru(inputid, params.id);
+            await updateTokoDorayaki(inputid, params.id, tsum);
+            await updateTokoDorayaki(loginval.id, params.id, mysum - tsum);
         } else {
             await updateTokoDorayaki(inputid, params.id, targetsum);
+            await updateTokoDorayaki(loginval.id, params.id, mysum);
         }
-
-        await updateTokoDorayaki(loginval.id, params.id, mysum);
         loaddorayaki();
         disabled = false;
     }
