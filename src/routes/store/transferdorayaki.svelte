@@ -21,13 +21,6 @@
     import Theme from "../../components/Theme.svelte";
     import ArrowRight32 from "carbon-icons-svelte/lib/ArrowRight32";
     import { getloggedinfo, verifylogindata, logout } from "../../js/auth.js";
-    import {
-        Col as MCol,
-        Row as MRow,
-        Tabs,
-        Tab,
-        TabContent,
-    } from "svelte-materialify";
     import { Divider } from "svelte-materialify";
     import { getDorayakiById } from "../../js/dorayakiapi.js";
     import {

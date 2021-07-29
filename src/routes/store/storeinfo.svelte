@@ -15,7 +15,6 @@
         Button,
     } from "carbon-components-svelte";
     import { onMount } from "svelte";
-    import Add20 from "carbon-icons-svelte/lib/Add20";
     import Delete20 from "carbon-icons-svelte/lib/Delete20";
     import Restart20 from "carbon-icons-svelte/lib/Restart16";
     import Header from "./../../components/Header.svelte";
@@ -43,7 +42,6 @@
 
     let loginval = getloggedinfo();
     let loadingbar = true;
-    let adddisabled = false;
     let disabled = false;
 
     let gambar =

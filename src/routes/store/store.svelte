@@ -11,7 +11,7 @@
         Tooltip,
     } from "carbon-components-svelte";
     import { Divider } from "svelte-materialify";
-    import { onMount, onDestroy } from "svelte";
+    import { onMount } from "svelte";
     import Header from "./../../components/Header.svelte";
     import Theme from "./../../components/Theme.svelte";
     import Toko from "./../../components/Toko.svelte";

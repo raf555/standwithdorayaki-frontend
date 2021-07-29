@@ -6,7 +6,6 @@
         Grid,
         Row,
         Column,
-        Loading,
         Form,
         FormGroup,
         TextInput,
@@ -23,7 +22,6 @@
 
     let theme = "g10";
     let loginval = getloggedinfo();
-    let batch_ = [];
     let disabled = false;
     let rasa = "hambar";
     let deskripsi = "dorayaki hambar hoek";

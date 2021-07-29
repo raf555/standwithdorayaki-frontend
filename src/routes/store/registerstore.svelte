@@ -11,7 +11,6 @@
         Form,
         FormGroup,
     } from "carbon-components-svelte";
-    import { onMount } from "svelte";
     import Header from "./../../components/Header.svelte";
     import Theme from "./../../components/Theme.svelte";
     import { getloggedinfo } from "./../../js/auth.js";
@@ -34,8 +33,6 @@
     let nama, jalan, kecamatan, provinsi;
 
     let disabled = false;
-    let openmodal = false;
-    let modalmsg = "";
 
     const registerform = async () => {
         disabled = true;

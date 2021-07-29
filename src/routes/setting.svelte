@@ -11,7 +11,6 @@
     RadioButtonGroup,
     RadioButton
   } from "carbon-components-svelte";
-  import { onMount, onDestroy } from "svelte";
   import Header from "./../components/Header.svelte";
   import Theme from "./../components/Theme.svelte";
   import { Divider } from "svelte-materialify";

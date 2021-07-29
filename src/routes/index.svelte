@@ -7,7 +7,7 @@
     Row,
     Column,
   } from "carbon-components-svelte";
-  import { onMount, onDestroy } from "svelte";
+  import { onMount } from "svelte";
   import Header from "./../components/Header.svelte";
   import Theme from "./../components/Theme.svelte";
   import { getloggedinfo, verifylogindata, logout } from "./../js/auth.js";

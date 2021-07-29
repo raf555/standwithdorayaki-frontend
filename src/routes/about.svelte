@@ -6,33 +6,13 @@
         Grid,
         Row,
         Column,
-        Form,
-        FormGroup,
-        Select,
-        SelectItem,
-        Loading,
-        Button,
     } from "carbon-components-svelte";
-    import { onMount } from "svelte";
     import Header from "../components/Header.svelte";
     import Theme from "../components/Theme.svelte";
-    import { getloggedinfo, verifylogindata, logout } from "../js/auth.js";
     import {} from "svelte-materialify";
     import { Divider } from "svelte-materialify";
 
     let theme = "g10";
-    let loginval = getloggedinfo();
-
-    onMount(async () => {
-        loginval = await verifylogindata();
-    });
-
-    $: (() => {
-        if (!loginval) {
-            logout();
-            location.href = "#/login";
-        }
-    })();
 </script>
 
 <svelte:head>
